@@ -3,10 +3,19 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
-  <title>INDEX</title>
+  <title>Index</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-ГЛАВНАЯ СТРАНИЦА
+
+<style>
+  h2{
+    text-align: center
+  }
+</style>
+<h2>ГЛАВНАЯ СТРАНИЦА</h2>
+<div class="container my-2">
+
 <table>
   <tr>
     <td>
@@ -32,10 +41,31 @@
     <td></td>
   </tr>
 </table>
+  <h1>Car list</h1>
+<table border = "1" class="table table-striped table-responsive-md">
+  <thead>
+  <tr>
+    <th>Бренд авто</th>
+    <th>Модель авто</th>
+    <th>Цвет авто</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="car : ${listCars}">
+    <td th:text="${car.getBrand()}"></td>
+    <td th:text="${car.getModel()}"></td>
+    <td th:text="${car.getColor()}"></td>
+  </tr>
+  </tbody>
+</table>
+
+
+
 <div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
   <form th:action="@{/logout}" th:method="POST">
     <input type="submit" value="Logout" />
   </form>
+</div>
 </div>
 </body>
 </html>

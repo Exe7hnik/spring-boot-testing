@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>INDEX</title>
+</head>
+<body>
+ГЛАВНАЯ СТРАНИЦА
+<table>
+  <tr>
+    <td>
+      <form th:action="@{/auth/login}">
+        <input type="submit" value="Login" />
+      </form>
+    </td>
+    <td>
+      <form th:action="@{/auth/registration}">
+        <input type="submit" value="Registration" />
+      </form>
+    </td>
+  </tr>
+  <tr>
+    <td>
+
+
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+<div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
+  <form th:action="@{/logout}" th:method="POST">
+    <input type="submit" value="Logout" />
+  </form>
+</div>
+</body>
+</html>

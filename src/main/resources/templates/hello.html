@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    This will only be displayed if authenticated user has role ROLE_ADMIN.
+</div>
+
+<div sec:authorize="hasRole('ROLE_USER')">
+    This will only be displayed if authenticated user has role ROLE_USER.
+</div>
+Hello world!
+<form th:action="@{/logout}" th:method="POST">
+    <input type="submit" value="Logout" />
+</form>
+
+</body>
+</html>

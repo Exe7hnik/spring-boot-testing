@@ -52,9 +52,8 @@
   </thead>
   <tbody>
   <tr th:each="car : ${listCars}">
-    <td th:text="${car.getBrand()}"></td>
-    <td th:text="${car.getModel()}"></td>
     <td th:text="${car.getColor()}"></td>
+
   </tr>
   </tbody>
 </table>

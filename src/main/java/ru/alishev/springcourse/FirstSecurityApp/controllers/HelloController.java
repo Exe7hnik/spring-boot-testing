@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.alishev.springcourse.FirstSecurityApp.security.PersonDetails;
 import ru.alishev.springcourse.FirstSecurityApp.services.AdminService;
+import ru.alishev.springcourse.FirstSecurityApp.services.BookingService;
 import ru.alishev.springcourse.FirstSecurityApp.services.CarService;
 
 /**
@@ -19,6 +20,9 @@ public class HelloController {
 
     @Autowired
     private CarService carService;
+
+    @Autowired
+    private BookingService bookingService;
 
     @Autowired
     public HelloController(AdminService adminService) {

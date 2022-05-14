@@ -4,6 +4,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author Neil Alishev
@@ -21,9 +24,14 @@ public class Person {
     @Column(name = "username")
     private String username;
 
-    @Min(value = 1900, message = "Год рождения должен быть больше, чем 1900")
-    @Column(name = "year_of_birth")
-    private int yearOfBirth;
+    @Column(name = "full_name")
+    private String full_name;
+
+    @Column(name = "phone")
+    private int phone;
+
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "password")
     private String password;
@@ -31,13 +39,29 @@ public class Person {
     @Column(name = "role")
     private String role;
 
+    @OneToMany(mappedBy = "person")
+    private List<Booking> bookings;
+
     // Конструктор по умолчанию нужен для Spring
     public Person() {
     }
 
-    public Person(String username, int yearOfBirth) {
+    public Person(
+            int id,
+            String username,
+            String full_name,
+            int phone,
+            String email,
+            String password,
+            String role
+    ) {
+        this.id = id;
         this.username = username;
-        this.yearOfBirth = yearOfBirth;
+        this.full_name = full_name;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+        this.role = role;
     }
 
     public int getId() {
@@ -56,12 +80,28 @@ public class Person {
         this.username = username;
     }
 
-    public int getYearOfBirth() {
-        return yearOfBirth;
+    public String getFull_name() {
+        return full_name;
     }
 
-    public void setYearOfBirth(int yearOfBirth) {
-        this.yearOfBirth = yearOfBirth;
+    public void setFull_name(String full_name) {
+        this.full_name = full_name;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -78,15 +118,5 @@ public class Person {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", yearOfBirth=" + yearOfBirth +
-                ", password='" + password + '\'' +
-                '}';
     }
 }

@@ -27,9 +27,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         // конфигурируем сам Spring Security
         // конфигурируем авторизацию
         http.authorizeRequests()
+                .antMatchers("/static/images/**").permitAll()
                 .antMatchers("/", "/error").not().fullyAuthenticated()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/auth/login", "/auth/registration", "/error", "/").permitAll()

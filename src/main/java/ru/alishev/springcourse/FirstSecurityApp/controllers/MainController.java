@@ -11,11 +11,8 @@ import ru.alishev.springcourse.FirstSecurityApp.services.AdminService;
 import ru.alishev.springcourse.FirstSecurityApp.services.BookingService;
 import ru.alishev.springcourse.FirstSecurityApp.services.CarService;
 
-/**
- * @author Neil Alishev
- */
 @Controller
-public class HelloController {
+public class MainController {
     private final AdminService adminService;
 
     @Autowired
@@ -25,7 +22,7 @@ public class HelloController {
     private BookingService bookingService;
 
     @Autowired
-    public HelloController(AdminService adminService) {
+    public MainController(AdminService adminService) {
         this.adminService = adminService;
     }
 

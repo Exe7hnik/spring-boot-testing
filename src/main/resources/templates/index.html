@@ -5,42 +5,14 @@
   <meta charset="UTF-8">
   <title>Index</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-</head>
 <body>
 
-<style>
-  h2{
-    text-align: center
-  }
-</style>
-<h2>ГЛАВНАЯ СТРАНИЦА</h2>
+<header th:fragment="headerfiles">
+  <div th:insert="fragments/components :: header"></div>
+</header>
+
 <div class="container my-2">
 
-<table>
-  <tr>
-    <td>
-      <form th:action="@{/auth/login}">
-        <input type="submit" value="Login" />
-      </form>
-    </td>
-    <td>
-      <form th:action="@{/auth/registration}">
-        <input type="submit" value="Registration" />
-      </form>
-    </td>
-  </tr>
-  <tr>
-    <td>
-
-
-    </td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
   <h1>Car list</h1>
 <table border = "1" class="table table-striped table-responsive-md">
   <thead>
@@ -58,13 +30,18 @@
   </tbody>
 </table>
 
-
-
 <div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
   <form th:action="@{/logout}" th:method="POST">
     <input type="submit" value="Logout" />
   </form>
 </div>
 </div>
+
+<footer th:fragment="footerfiles">
+  <div th:insert="fragments/components :: footer"></div>
+</footer>
+
+<img src="./static/images/Footer.png">
+
 </body>
 </html>

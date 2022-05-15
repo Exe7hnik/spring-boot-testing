@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-/**
- * @author Neil Alishev
- */
 @Entity
 @Table(name = "Person")
 public class Person {

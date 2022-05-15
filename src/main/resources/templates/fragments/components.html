@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<header th:fragment="header">
+
+  <style>
+    h2{
+      text-align: center
+    }
+  </style>
+
+  <h2>ГЛАВНАЯ СТРАНИЦА</h2>
+
+  <table>
+    <tr>
+      <td>
+        <form th:action="@{/auth/login}">
+          <input type="submit" value="Login" />
+        </form>
+      </td>
+      <td>
+        <form th:action="@{/auth/registration}">
+          <input type="submit" value="Registration" />
+        </form>
+      </td>
+    </tr>
+  </table>
+
+</header>
+
+<nav th:fragment="menu">
+
+</nav>
+
+<footer th:fragment="footer">
+  FOOTER
+  <img src="static/images/Footer.png">
+</footer>
+
+</body>
+</html>

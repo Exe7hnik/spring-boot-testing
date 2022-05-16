@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import ru.alishev.springcourse.FirstSecurityApp.security.PersonDetails;
 import ru.alishev.springcourse.FirstSecurityApp.services.AdminService;
 import ru.alishev.springcourse.FirstSecurityApp.services.BookingService;
@@ -30,6 +31,18 @@ public class MainController {
     public String indexPage(Model model) {
         model.addAttribute("listCars", carService.getAllCars());
         return "index";
+    }
+
+    @GetMapping("/cars")
+    public String carsPage(Model model) {
+        model.addAttribute("listCars", carService.getAllCars());
+        return "cars";
+    }
+
+    @GetMapping("cars/{id}")
+    public String show(@PathVariable("id") int id, Model model) {
+        model.addAttribute("car", carService.show(id));
+        return "car_show";
     }
 
     @GetMapping("/hello")

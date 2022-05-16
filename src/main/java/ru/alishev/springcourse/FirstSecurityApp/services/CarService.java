@@ -21,4 +21,7 @@ public class CarService {
         return carRepository.findAll();
     }
 
+    public Car show(int id) {
+        return carRepository.getById(id);
+    }
 }

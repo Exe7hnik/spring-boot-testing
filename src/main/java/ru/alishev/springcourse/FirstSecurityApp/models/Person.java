@@ -25,7 +25,7 @@ public class Person {
     private String full_name;
 
     @Column(name = "phone")
-    private int phone;
+    private long phone;
 
     @Column(name = "email")
     private String email;
@@ -47,7 +47,7 @@ public class Person {
             int id,
             String username,
             String full_name,
-            int phone,
+            long phone,
             String email,
             String password,
             String role
@@ -85,11 +85,11 @@ public class Person {
         this.full_name = full_name;
     }
 
-    public int getPhone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 

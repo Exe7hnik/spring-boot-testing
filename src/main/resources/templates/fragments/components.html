@@ -10,10 +10,13 @@
     }
   </style>
 
-  <h2>ГЛАВНАЯ СТРАНИЦА</h2>
+
 
   <table>
     <tr>
+      <td>
+        <a th:href="@{/cars}">Машины</a>
+      </td>
       <td>
         <form th:action="@{/auth/login}">
           <input type="submit" value="Login" />
@@ -35,7 +38,7 @@
 
 <footer th:fragment="footer">
   FOOTER
-  <img src="static/images/Footer.png">
+  <img src="/static/images/Footer.png">
 </footer>
 
 </body>

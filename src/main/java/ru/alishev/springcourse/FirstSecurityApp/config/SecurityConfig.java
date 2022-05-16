@@ -11,9 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.alishev.springcourse.FirstSecurityApp.services.PersonDetailsService;
 
-/**
- * @author Neil Alishev
- */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -32,9 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // конфигурируем авторизацию
         http.authorizeRequests()
                 .antMatchers("/static/images/**").permitAll()
-                .antMatchers("/", "/error").not().fullyAuthenticated()
+                .antMatchers("/", "/error", "/cars", "/cars/**").not().fullyAuthenticated()
                 .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/auth/login", "/auth/registration", "/error", "/").permitAll()
+                .antMatchers("/auth/login", "/auth/registration", "/error", "/", "/cars", "/cars/**").permitAll()
                 .anyRequest().hasAnyRole("USER", "ADMIN")
                 .and()
                 .formLogin().loginPage("/auth/login")

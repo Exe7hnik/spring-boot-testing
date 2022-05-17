@@ -1,34 +1,41 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 
-<header th:fragment="header">
+<link th:fragment="link" rel="stylesheet" href="/static/css/main.css" crossorigin="anonymous">
 
-  <style>
-    h2{
-      text-align: center
-    }
-  </style>
+<header class="header" th:fragment="header">
 
+  <form th:action="@{/logout}" method="post" th:hidden="true" name="logoutForm">
+    <input type="submit" value="Logout" />
+  </form>
 
+    <div class="header__container container">
+      <a th:href="@{/}">
+        <img src="/static/images/LogoRedesign.svg">
+      </a>
+      <nav class="header__menu">
+        <a class="header__item" th:href="@{/cars}">Машины</a>
+        <a class="header__item" href="#scroll_link_about">Информация</a>
+        <a class="header__item" th:href="@{/cars}">Контакты</a>
+      </nav>
+      <div class="header__right">
+        <a sec:authorize="isAnonymous()" class="header__item" th:href="@{/auth/login}">Войти</a>
+        <a sec:authorize="isAnonymous()" class="header__item" th:href="@{/auth/registration}">Регистрация</a>
+        <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="header__item" >Профиль</a>
+        <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="header__item" id="logoutLink" href="javascript: document.logoutForm.submit()">Выйти</a>
 
-  <table>
-    <tr>
-      <td>
-        <a th:href="@{/cars}">Машины</a>
-      </td>
-      <td>
-        <form th:action="@{/auth/login}">
-          <input type="submit" value="Login" />
-        </form>
-      </td>
-      <td>
-        <form th:action="@{/auth/registration}">
-          <input type="submit" value="Registration" />
-        </form>
-      </td>
-    </tr>
-  </table>
+      </div>
+    </div>
+  <span th:text="${#authentication.getDetails()}"></span>
+  <span th:text="${#authentication.getCredentials()}"></span>
+  <span th:text="${#authentication.getAuthorities()}"></span>
+  <div sec:authorize="isAuthenticated()">
+    Welcome, <span sec:authentication="name">Username</span>
+  </div>
+
+  <div th:text="${#authentication.getPrincipal()}"></div>
 
 </header>
 
@@ -38,7 +45,6 @@
 
 <footer th:fragment="footer">
   FOOTER
-  <img src="/static/images/Footer.png">
 </footer>
 
 </body>

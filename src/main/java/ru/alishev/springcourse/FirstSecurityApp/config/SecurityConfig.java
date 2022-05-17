@@ -11,6 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.alishev.springcourse.FirstSecurityApp.services.PersonDetailsService;
 
+import java.util.Scanner;
+
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -22,15 +24,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.personDetailsService = personDetailsService;
     }
 
+    Scanner scanner = new Scanner(System.in);
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         // конфигурируем сам Spring Security
         // конфигурируем авторизацию
         http.authorizeRequests()
-                .antMatchers("/static/images/**").permitAll()
+                .antMatchers(
+                        "/static/images/**",
+                        "/static/css/**",
+                        "/static/images/**",
+                        "/static/fonts/**"
+                        ).permitAll()
                 .antMatchers("/", "/error", "/cars", "/cars/**").not().fullyAuthenticated()
                 .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/profile").hasRole("USER")
                 .antMatchers("/auth/login", "/auth/registration", "/error", "/", "/cars", "/cars/**").permitAll()
                 .anyRequest().hasAnyRole("USER", "ADMIN")
                 .and()

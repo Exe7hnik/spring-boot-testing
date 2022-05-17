@@ -11,7 +11,6 @@ import ru.alishev.springcourse.FirstSecurityApp.security.PersonDetails;
 
 import java.util.Optional;
 
-
 @Service
 public class PersonDetailsService implements UserDetailsService {
 
@@ -31,6 +30,5 @@ public class PersonDetailsService implements UserDetailsService {
 
         return new PersonDetails(person.get());
     }
-
 
 }

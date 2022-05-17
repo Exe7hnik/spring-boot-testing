@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<thead>
+<tr>
+    <th>Бренд авто</th>
+    <th>Модель авто</th>
+    <th>Цвет авто</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="booking : ${personBooking}">
+    <td th:text="${booking.getPerson().getFull_name()}">213</td>
+    <td th:text="${booking.getPerson().getEmail()}">213</td>
+    <td th:text="${booking.getPerson().getPhone()}">213</td>
+</tr>
+</tbody>
+
+<div th:object="${personBooking}">
+    <span th:text="*{getCar().getBrand()}">...</span>
+    <span th:text="*{getCar().getModel()}">...</span>
+    <span th:text="*{getDate_start()}">...</span>
+    <span th:text="*{getDate_end()}">...</span>
+    <span th:text="*{getTotal_price()}">...</span>
+    <span th:text="*{isStatus()}">...</span>
+
+</div>
+
+</body>
+</html>

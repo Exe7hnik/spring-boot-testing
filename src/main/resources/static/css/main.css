@@ -1,0 +1,147 @@
+html {
+    scroll-behavior: smooth; /* свойство scroll-behavior не наследуется, применяется к прокручиваемым блокам */ 
+  }
+
+@font-face {
+    font-family: "Raleway-Bold";
+    /* Браузер сначала попробует найти шрифт локально */
+    src: url("/static/fonts/Raleway-Bold.ttf") format("truetype");
+  }
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+
+.wrapper {
+    background-image: url("./images/header.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 590px;
+    position: relative;
+}
+
+.first_page {
+    width: 100%;
+    position: absolute;
+    bottom: 92px;
+    padding: 25px 0;
+    background-color: #1C1C1C;
+    opacity: 0.85;
+}
+
+.h1_common_orange {
+font-family: 'Raleway-Bold';
+font-size: 25px;
+line-height: 23px;
+display: flex;
+align-items: center;
+
+color: #FF4D00;
+}
+
+.first_page-h2 {
+    font-family: 'Raleway-Bold';
+    font-size: 30px;
+    color: white;
+}
+
+.header {
+    border-bottom: 1px solid #1C1C1C;
+}
+
+.header__container {
+    padding-top: 19px;
+    padding-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__menu {
+    max-width: 460px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.header__right {
+    max-width: 230px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__item {
+    font-family: 'Raleway-Bold';
+    font-size: 15px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #6C6C6C;
+}
+
+.footer {
+    width: 100%;
+    padding-bottom: 20px;
+    background-color: #1C1C1C
+}
+
+.footer__center {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-family: 'Raleway-Bold';
+    font-size: 18px;
+    line-height: 25px;
+ 
+
+    color: white;
+}
+.footer__logo {
+    width: 37px;
+}
+
+.footer__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__item {
+    max-width: 460px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-family: 'Raleway-Bold';
+    font-size: 15px;
+    line-height: 25px;
+    color: white;
+
+
+}
+
+.footer__image {
+    width: 25px;
+}
+
+.h1_footer_orange {
+    font-family: 'Raleway-Bold';
+    font-size: 15px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    
+    color: #FF4D00;
+    }

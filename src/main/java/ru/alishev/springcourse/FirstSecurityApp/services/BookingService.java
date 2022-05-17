@@ -1,8 +1,10 @@
 package ru.alishev.springcourse.FirstSecurityApp.services;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.alishev.springcourse.FirstSecurityApp.models.Booking;
+import ru.alishev.springcourse.FirstSecurityApp.models.Car;
 import ru.alishev.springcourse.FirstSecurityApp.repositories.BookingRepository;
 
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.List;
 public class BookingService {
 
     private final BookingRepository bookingRepository;
-
+    private Session currentSession;
     @Autowired
     public BookingService(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
@@ -19,6 +21,10 @@ public class BookingService {
 
     public List<Booking> getAllBooking() {
         return bookingRepository.findAll();
+    }
+
+    public Booking showBooking(int id) {
+        return bookingRepository.getById(id);
     }
 
 }

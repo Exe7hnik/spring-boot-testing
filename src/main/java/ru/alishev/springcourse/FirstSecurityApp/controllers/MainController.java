@@ -2,6 +2,7 @@ package ru.alishev.springcourse.FirstSecurityApp.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +28,8 @@ public class MainController {
         this.adminService = adminService;
     }
 
+
+
     @GetMapping("/")
     public String indexPage(Model model) {
         model.addAttribute("listCars", carService.getAllCars());
@@ -45,6 +48,13 @@ public class MainController {
         return "car_show";
     }
 
+    @GetMapping("/profile/{id}")
+    public String personShow(@PathVariable("id") int id, Model model) {
+        model.addAttribute("personBooking", bookingService.showBooking(id));
+        return "profile";
+    }
+
+
     @GetMapping("/hello")
     public String sayHello() {
         return "hello";
@@ -55,6 +65,7 @@ public class MainController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         System.out.println(personDetails.getPerson());
+        System.out.println("id пользователя" + personDetails.getPerson().getId());
 
         return "hello";
     }

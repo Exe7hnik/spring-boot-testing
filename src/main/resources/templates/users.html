@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Admin page</title>
+    <title>Admin page/ Users</title>
 </head>
 <body>
 <div sec:authorize="hasRole('ROLE_ADMIN')">
@@ -14,10 +14,15 @@
     This will only be displayed if authenticated user has role ROLE_USER.
 </div>
 
+<div th:each="user : ${users}">
+    <span th:text="*{'Id пользователя: ' + user.getId()}">...</span>
+    <span th:text="*{'ФИО: ' + user.getFull_name()}">...</span>
+    <span th:text="*{'Телефон: ' + user.getPhone()}">...</span>
+    <span th:text="*{'Email: ' + user.getEmail()}">...</span>
+    <a th:href="@{/admin/{id} (id=${user.getId()})}">Обновить</a>
 
-<a  th:href="@{/admin/requests}">Заявки</a>
-<a  th:href="@{/admin/users}">Список всех пользователей</a>
-<a  th:href="@{/admin/cars}">Список всех автомобилей</a>
+
+</div>
 
 
 <form th:action="@{/logout}" th:method="POST">

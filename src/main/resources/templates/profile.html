@@ -7,20 +7,25 @@
 </head>
 <body>
 
-<thead>
-<tr>
-    <th>Бренд авто</th>
-    <th>Модель авто</th>
-    <th>Цвет авто</th>
-</tr>
-</thead>
-<tbody>
-<tr th:each="booking : ${personBooking}">
-    <td th:text="${booking.getPerson().getFull_name()}">213</td>
-    <td th:text="${booking.getPerson().getEmail()}">213</td>
-    <td th:text="${booking.getPerson().getPhone()}">213</td>
-</tr>
-</tbody>
+<div th:object="${personBooking}">
+    <span th:text="*{getPerson().getFull_name()}">...</span>
+    <br>
+    <span th:text="*{getPerson().getEmail()}">...</span>
+    <br>
+    <span th:text="*{getPerson().getPhone()}">...</span>
+    <br>
+
+</div>
+
+<div th:each="book : ${bookings}">
+    <span th:text="*{book.getPerson().getFull_name()}">...</span>
+    <span th:text="*{book.getCar().getModel()}">...</span>
+    <span th:text="*{book.getDate_start()}">...</span>
+    <span th:text="*{book.getDate_end()}">...</span>
+    <span th:text="*{book.getTotal_price()}">...</span>
+    <span th:text="*{book.isStatus()}">...</span>
+
+</div>
 
 <div th:object="${personBooking}">
     <span th:text="*{getCar().getBrand()}">...</span>
@@ -31,6 +36,8 @@
     <span th:text="*{isStatus()}">...</span>
 
 </div>
+
+
 
 </body>
 </html>

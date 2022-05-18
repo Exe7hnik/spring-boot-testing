@@ -2,6 +2,7 @@ package ru.alishev.springcourse.FirstSecurityApp.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -38,21 +39,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/static/images/**",
                         "/static/fonts/**"
                         ).permitAll()
+                /*.antMatchers(HttpMethod.PATCH,"/admin","/admin/**").hasRole("ADMIN")*/
                 .antMatchers("/", "/error", "/cars", "/cars/**").not().fullyAuthenticated()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/profile").hasRole("USER")
                 .antMatchers("/auth/login", "/auth/registration", "/error", "/", "/cars", "/cars/**").permitAll()
-                .anyRequest().hasAnyRole("USER", "ADMIN")
+                    .anyRequest().hasAnyRole("USER", "ADMIN")
                 .and()
-                .formLogin().loginPage("/auth/login")
-                .loginProcessingUrl("/process_login")
-                .defaultSuccessUrl("/hello", true)
+                    .formLogin().loginPage("/auth/login")
+                    .loginProcessingUrl("/process_login")
+                    .defaultSuccessUrl("/", true)
                 .failureUrl("/auth/login?error")
                 .and()
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/");
                 //.logoutSuccessUrl("/auth/login");
+        http.csrf().disable();
     }
 
     // Настраиваем аутентификацию

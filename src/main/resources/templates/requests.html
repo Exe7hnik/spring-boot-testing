@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+</head>
+<body>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    This will only be displayed if authenticated user has role ROLE_ADMIN.
+</div>
+
+<div sec:authorize="hasRole('ROLE_USER')">
+    This will only be displayed if authenticated user has role ROLE_USER.
+</div>
+
+<div th:each="book : ${bookings}">
+    <span th:text="*{'Имя пользователя: ' + book.getPerson().getUsername()}">...</span>
+    <span th:text="*{'Телефон: ' + book.getPerson().getPhone()}">...</span>
+    <span th:text="*{'Id машины: ' + book.getCar().getId()}">...</span>
+    <span th:text="*{'Бренд и модель: ' + book.getCar().getBrand() + ' ' + book.getCar().getModel()}">...</span>
+    <span th:text="*{book.getDate_start()}">...</span>
+    <span th:text="*{book.getDate_end()}">...</span>
+    <span th:text="*{book.getTotal_price()}">...</span>
+    <span th:text="*{book.isStatus()}">...</span>
+
+</div>
+
+
+<form th:action="@{/logout}" th:method="POST">
+    <input type="submit" value="Logout" />
+</form>
+
+</body>
+</html>

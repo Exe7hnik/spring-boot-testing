@@ -23,7 +23,7 @@
       <div class="header__right">
         <a sec:authorize="isAnonymous()" class="header__item" th:href="@{/auth/login}">Войти</a>
         <a sec:authorize="isAnonymous()" class="header__item" th:href="@{/auth/registration}">Регистрация</a>
-        <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="header__item" >Профиль</a>
+        <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="header__item" th:href="@{/profile/{id}(id=${personId})}" >Профиль</a>
         <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="header__item" id="logoutLink" href="javascript: document.logoutForm.submit()">Выйти</a>
 
       </div>
@@ -36,6 +36,12 @@
   </div>
 
   <div th:text="${#authentication.getPrincipal()}"></div>
+
+
+  <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+
+
+
 
 </header>
 

@@ -28,32 +28,49 @@ public class MainController {
         this.adminService = adminService;
     }
 
-
-
     @GetMapping("/")
     public String indexPage(Model model) {
         model.addAttribute("listCars", carService.getAllCars());
+        try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            System.out.println(authentication);
+            PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+
+            System.out.println(personDetails.getPersonId());
+            if (personDetails.getPersonId() == 0) {
+            } else {
+                model.addAttribute("personId", personDetails.getPersonId());
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
         return "index";
     }
 
     @GetMapping("/cars")
     public String carsPage(Model model) {
         model.addAttribute("listCars", carService.getAllCars());
+
         return "cars";
     }
 
     @GetMapping("cars/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("car", carService.show(id));
+        
         return "car_show";
     }
 
     @GetMapping("/profile/{id}")
     public String personShow(@PathVariable("id") int id, Model model) {
+        
         model.addAttribute("personBooking", bookingService.showBooking(id));
+
+        model.addAttribute("bookings", bookingService.getAllBooking());
+
         return "profile";
     }
-
 
     @GetMapping("/hello")
     public String sayHello() {
@@ -70,9 +87,4 @@ public class MainController {
         return "hello";
     }
 
-    @GetMapping("/admin")
-    public String adminPage() {
-        adminService.doAdminStuff();
-        return "admin";
-    }
 }

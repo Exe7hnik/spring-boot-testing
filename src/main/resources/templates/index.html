@@ -33,12 +33,7 @@
   </tr>
   </tbody>
 </table>
-
-<div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
-  <form th:action="@{/logout}" th:method="POST">
-    <input type="submit" value="Logout" />
-  </form>
-</div>
+  
 </div>
 
 <footer th:fragment="footerfiles">

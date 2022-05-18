@@ -13,7 +13,7 @@ import java.util.List;
 public class BookingService {
 
     private final BookingRepository bookingRepository;
-    private Session currentSession;
+
     @Autowired
     public BookingService(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;

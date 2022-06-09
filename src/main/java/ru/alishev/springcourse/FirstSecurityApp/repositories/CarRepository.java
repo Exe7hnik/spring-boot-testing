@@ -6,4 +6,5 @@ import ru.alishev.springcourse.FirstSecurityApp.models.Car;
 
 @Repository
 public interface CarRepository extends JpaRepository<Car, Integer> {
+    void deleteCarByIdIs(int id);
 }

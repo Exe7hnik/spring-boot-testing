@@ -27,4 +27,9 @@ public class BookingService {
         return bookingRepository.getById(id);
     }
 
+    public void updateBooking(int id) {
+        bookingRepository.getById(id);
+
+    }
+
 }

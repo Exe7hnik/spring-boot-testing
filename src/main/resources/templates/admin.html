@@ -4,14 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin page</title>
+    <link th:insert="fragments/components :: link">
 </head>
 <body>
-<div sec:authorize="hasRole('ROLE_ADMIN')">
-    This will only be displayed if authenticated user has role ROLE_ADMIN.
-</div>
-
-<div sec:authorize="hasRole('ROLE_USER')">
-    This will only be displayed if authenticated user has role ROLE_USER.
+<div th:fragment="headerfiles">
+    <div th:insert="fragments/components :: header_admin"></div>
 </div>
 
 

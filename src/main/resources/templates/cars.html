@@ -4,41 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <link th:insert="fragments/components :: link">
-    <title>Cars</title>
+    <title>Машины</title>
 <body>
-<h2>Машины</h2>
 <header th:fragment="headerfiles">
     <div th:insert="fragments/components :: header"></div>
 </header>
 
-<div class="container my-2">
+<div class="container">
 
-    <h1>Car list</h1>
-    <table border = "1" class="table table-striped table-responsive-md">
-        <thead>
-        <tr>
-            <th>Бренд авто</th>
-            <th>Модель авто</th>
-            <th>Цвет авто</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="car : ${listCars}">
-            <td th:text="${car.getColor()}"></td>
-            <td th:text="${car.getBrand()}"></td>
-            <td>
-                <a th:href="@{/cars/{id}(id=${car.getId()})}">Подробнее</a>
-            </td>
+    <h2 class="h2_cars_black">Прокат спортивных автомобилей</h2>
+    <h1 class="h1_common_orange">Ознакомьтесь с нашим парком!</h1>
 
-        </tr>
-        </tbody>
-    </table>
+    <div class="cars">
 
-    <div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
-        <form th:action="@{/logout}" th:method="POST">
-            <input type="submit" value="Logout" />
-        </form>
+        <div class="cars__item" th:each="car : ${listCars}">
+            <h1 class="h1_cars_black_item" th:text="${car.getBrand() + ' ' + car.getModel()}" >Brand + Model</h1>
+
+            <div class="cars__content">
+                <div class="cars__block">
+                    <img src="/static/images/car1.svg">
+                </div>
+
+                <div class="cars__block__right">
+                    <div class="cars__block__right__item"> <img class="cars__icon" src="/static/images/body_type.svg"> <h2 class="h2_cars_item_right" th:text="${car.getBody_type()}">Купе</h2> </div>
+                    <div class="cars__block__right__item"> <img class="cars__icon" src="/static/images/engine.svg"> <h2 class="h2_cars_item_right" th:text="${car.getEngine_type()}">3.0l Twin Turbo</h2> </div>
+                    <div class="cars__block__right__item"> <img class="cars__icon" src="/static/images/color.svg"> <h2 class="h2_cars_item_right" th:text="${car.getColor()}" >Красный</h2> </div>
+                    <div class="cars__block__right__item"> <img class="cars__icon" src="/static/images/horse_power.svg"> <h2 class="h2_cars_item_right" th:text="${car.getHorse_power() + ' лошадей'}">450 лошадей</h2> </div>
+                </div>
+            </div>
+
+            <div class="cars_bottom">
+                <h1 class="h1_cars_price" th:text ="'Стоимость аренды: ' + ${car.getPrice_per_day()+ ' руб.' }">Стоимость аренды: 35000 руб.</h1>
+                <a class="h1_cars_black_url" th:href="@{/cars/{id}(id=${car.getId()})}">Подробнее</a>
+            </div>
+        </div>
     </div>
+
 </div>
 
 <footer th:fragment="footerfiles">

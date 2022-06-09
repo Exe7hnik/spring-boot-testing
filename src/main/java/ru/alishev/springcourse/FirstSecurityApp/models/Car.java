@@ -154,6 +154,20 @@ public class Car {
         this.view_or_not = view_or_not;
     }
 
-
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", color='" + color + '\'' +
+                ", body_type='" + body_type + '\'' +
+                ", engine_type='" + engine_type + '\'' +
+                ", horse_power=" + horse_power +
+                ", price_per_day=" + price_per_day +
+                ", description='" + description + '\'' +
+                ", view_or_not=" + view_or_not +
+                '}';
+    }
 }
 

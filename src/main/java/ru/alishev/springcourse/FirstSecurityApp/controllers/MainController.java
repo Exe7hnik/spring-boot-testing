@@ -48,9 +48,31 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/contacts")
+    public String contactsPage(Model model) {
+
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser") {
+        } else {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+
+            model.addAttribute("personId", personDetails.getPersonId());
+        }
+
+        return "contacts";
+    }
+
     @GetMapping("/cars")
     public String carsPage(Model model) {
         model.addAttribute("listCars", carService.getAllCars());
+
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() == "anonymousUser") {
+        } else {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+
+            model.addAttribute("personId", personDetails.getPersonId());
+        }
 
         return "cars";
     }
@@ -67,7 +89,7 @@ public class MainController {
         
         model.addAttribute("personBooking", bookingService.showBooking(id));
 
-        model.addAttribute("bookings", bookingService.getAllBooking());
+       // model.addAttribute("bookings", bookingService.getAllBooking());
 
         return "profile";
     }

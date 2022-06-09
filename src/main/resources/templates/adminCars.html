@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <link th:insert="fragments/components :: link">
+  <title>Admin Cars</title>
+<body>
+<h2>Машины</h2>
+<header th:fragment="headerfiles">
+  <div th:insert="fragments/components :: header"></div>
+</header>
+
+<div>
+
+  <h1>Car list</h1>
+  <table>
+    <thead>
+    <tr>
+
+      <th>ID</th>
+      <th>Бренд авто</th>
+      <th>Модель авто</th>
+      <th>Цвет авто</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${listCars}">
+      <td th:text="${car.getId()}"></td>
+      <td th:text="${car.getBrand()}"></td>
+      <td th:text="${car.getModel()}"></td>
+      <td th:text="${car.getColor()}"></td>
+      <td>
+        <a th:href="@{/admin/cars/{id}(id=${car.getId()})}">Подробнее</a>
+      </td>
+
+    </tr>
+    </tbody>
+  </table>
+
+  <div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
+    <form th:action="@{/logout}" th:method="POST">
+      <input type="submit" value="Logout" />
+    </form>
+  </div>
+</div>
+
+<footer th:fragment="footerfiles">
+  <div th:insert="fragments/components :: footer"></div>
+</footer>
+
+</body>
+</html>

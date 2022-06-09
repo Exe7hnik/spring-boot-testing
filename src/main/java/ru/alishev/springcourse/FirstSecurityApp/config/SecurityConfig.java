@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/error", "/cars", "/cars/**").not().fullyAuthenticated()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/profile").hasRole("USER")
-                .antMatchers("/auth/login", "/auth/registration", "/error", "/", "/cars", "/cars/**").permitAll()
+                .antMatchers("/auth/login", "/auth/registration", "/error", "/", "/cars", "/cars/**", "/contacts").permitAll()
                     .anyRequest().hasAnyRole("USER", "ADMIN")
                 .and()
                     .formLogin().loginPage("/auth/login")
@@ -55,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/");
                 //.logoutSuccessUrl("/auth/login");
-        http.csrf().disable();
+        //http.csrf().disable();
     }
 
     // Настраиваем аутентификацию

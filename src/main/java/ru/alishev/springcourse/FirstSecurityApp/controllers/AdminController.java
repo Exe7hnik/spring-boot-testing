@@ -4,16 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+import ru.alishev.springcourse.FirstSecurityApp.models.Car;
 import ru.alishev.springcourse.FirstSecurityApp.models.Person;
 import ru.alishev.springcourse.FirstSecurityApp.services.AdminService;
 import ru.alishev.springcourse.FirstSecurityApp.services.BookingService;
+import ru.alishev.springcourse.FirstSecurityApp.services.CarService;
 import ru.alishev.springcourse.FirstSecurityApp.services.PersonDetailsService;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 public class AdminController {
@@ -25,6 +25,9 @@ public class AdminController {
 
     @Autowired
     private BookingService bookingService;
+
+    @Autowired
+    private CarService carService;
 
     @Autowired
     public AdminController(AdminService adminService, PersonDetailsService personDetailsService) {
@@ -57,18 +60,53 @@ public class AdminController {
         return "editUser";
     }
 
-/*   @PatchMapping("/admin/{id}")
-    public String update(@ModelAttribute("user") Person person, *//*BindingResult bindingResult,*//*
+    //@PatchMapping("/admin/{id}")  ОБВОНИТЬ ПОльзоваТЕЛЯ
+/*    @RequestMapping(value = "/admin/{id}", method = RequestMethod.POST)
+    public String update(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult,
                          @PathVariable("id") int id) {
-*//*
         if (bindingResult.hasErrors())
-            return "editUser";
-*//*
+            System.out.println(bindingResult);
 
-        personDetailsService.update(id, person);
+        personDetailsService.updatePerson(id, person);
         return "redirect:/admin/users";
     }*/
 
+    @GetMapping("/admin/cars")
+    public String allCarsAdmin(Model model) {
+        model.addAttribute("listCars", carService.getAllCars());
+        return "adminCars";
+    }
+
+/*    @GetMapping("/admin/cars/{id}")
+    public String editCar(Model model, @PathVariable("id") int id) {
+        model.addAttribute("car", carService.show(id));
+        return "carEdit";
+    }*/
+
+   @RequestMapping(path = { "/admin/cars/{id}"})
+    public String editCarById(Model model, @PathVariable("id") Optional<Integer> id)
+    {
+        if (id.isPresent()) {
+            Car car = carService.show(id.get());
+            model.addAttribute("car", car);
+        } else {
+            model.addAttribute("car", new Car());
+        }
+        return "carEdit";
+    }
 
 
+/*    @RequestMapping(value = "/admin/cars/{id}", method = RequestMethod.POST)
+    public String delete(@PathVariable("id") int id) {
+        carService.deleteCar(id);
+        return "redirect:/admin/cars";
+    }*/
+
+
+/*    @RequestMapping(path = "/admin/cars/{id}", method = RequestMethod.POST)
+    public String createOrUpdateEmployee(Car car)
+    {
+        carService.createOrUpdateCar(car);
+        return "redirect:/";
+    }*/
 }

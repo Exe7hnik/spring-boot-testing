@@ -102,4 +102,15 @@ public class Booking {
     public void setPerson(Person person) {
         this.person = person;
     }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", date_start=" + date_start +
+                ", date_end=" + date_end +
+                ", total_price=" + total_price +
+                ", status=" + status +
+                '}';
+    }
 }

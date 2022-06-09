@@ -1,12 +1,18 @@
 html {
-    scroll-behavior: smooth; /* свойство scroll-behavior не наследуется, применяется к прокручиваемым блокам */ 
-  }
+    scroll-behavior: smooth; /* свойство scroll-behavior не наследуется, применяется к прокручиваемым блокам */
+}
 
 @font-face {
     font-family: "Raleway-Bold";
     /* Браузер сначала попробует найти шрифт локально */
     src: url("/static/fonts/Raleway-Bold.ttf") format("truetype");
-  }
+}
+
+@font-face {
+    font-family: "Raleway-Regular";
+    /* Браузер сначала попробует найти шрифт локально */
+    src: url("/static/fonts/Raleway-Regular.ttf") format("truetype");
+}
 
 body {
     margin: 0;
@@ -22,7 +28,7 @@ body {
 
 
 .wrapper {
-    background-image: url("./images/header.png");
+    background-image: url("/static/images/header.png");
     background-size: cover;
     background-repeat: no-repeat;
     height: 590px;
@@ -39,13 +45,13 @@ body {
 }
 
 .h1_common_orange {
-font-family: 'Raleway-Bold';
-font-size: 25px;
-line-height: 23px;
-display: flex;
-align-items: center;
+    font-family: 'Raleway-Bold';
+    font-size: 25px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
 
-color: #FF4D00;
+    color: #FF4D00;
 }
 
 .first_page-h2 {
@@ -94,7 +100,8 @@ color: #FF4D00;
 .footer {
     width: 100%;
     padding-bottom: 20px;
-    background-color: #1C1C1C
+    background-color: #1C1C1C;
+    padding-top: 15px;
 }
 
 .footer__center {
@@ -106,24 +113,27 @@ color: #FF4D00;
     font-family: 'Raleway-Bold';
     font-size: 18px;
     line-height: 25px;
- 
 
+    margin-bottom: 20px;
     color: white;
 }
 .footer__logo {
     width: 37px;
+    margin-bottom: 15px;
+
 }
 
 .footer__container {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
 }
 
 .footer__item {
     max-width: 460px;
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     font-family: 'Raleway-Bold';
     font-size: 15px;
     line-height: 25px;
@@ -134,6 +144,8 @@ color: #FF4D00;
 
 .footer__image {
     width: 25px;
+    margin-right: 15px;
+
 }
 
 .h1_footer_orange {
@@ -142,6 +154,135 @@ color: #FF4D00;
     line-height: 23px;
     display: flex;
     align-items: center;
-    
+
     color: #FF4D00;
-    }
+}
+
+.cars {
+    max-width: 1100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.cars__item {
+    max-width: 465px;
+    width: 100%;
+    margin: 20px;
+    padding: 20px;
+    flex: 1 1 auto;
+    margin-right: 10px;
+    background-color: #F7F7F7;
+    box-shadow: 4px 4px 4px #FF4D00;
+
+
+}
+
+.h1_cars_black_item {
+    font-family: 'Raleway-Bold';
+    font-size: 30px;
+    line-height: 23px;
+    display: flex;
+    justify-content: center;
+    color: black;
+
+}
+
+.h1_cars_price {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    display: flex;
+    justify-content: center;
+    color: #818181;
+    padding-left: 70px;
+}
+
+.h2_cars_item_right {
+    font-family: 'Raleway-Bold';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    /* identical to box height */
+
+
+
+
+    color: #333333;
+}
+
+.cars_logo {
+
+}
+
+.h2_cars_black {
+    font-family: 'Raleway-Bold';
+    font-size: 30px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    color: black;
+}
+
+.h1_cars_black {
+    font-family: 'Raleway-Regular';
+    font-size: 20px;
+    line-height: 23px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    color: black;
+}
+
+.h1_cars_black_url {
+    font-family: 'Raleway-Regular';
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+    padding: 7px;
+    border: 1px solid;
+    margin-left: 25px;
+}
+
+.cars_map {
+    max-width: 1440px;
+    width: 100%;
+    display: flex;
+}
+
+.cars__block {
+    display: flex;
+    align-items: center;
+}
+
+.cars__block__right {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.cars__icon {
+    width: 25px;
+    margin-right: 15px;
+}
+
+.cars__content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cars__block__right__item {
+    display: flex;
+}
+
+.cars_bottom {
+    display: flex;
+}

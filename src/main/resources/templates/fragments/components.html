@@ -17,8 +17,9 @@
       </a>
       <nav class="header__menu">
         <a class="header__item" th:href="@{/cars}">Машины</a>
-        <a class="header__item" href="#scroll_link_about">Информация</a>
-        <a class="header__item" th:href="@{/cars}">Контакты</a>
+        <a class="header__item" href="/#scroll_link_about">Информация</a>
+        <a class="header__item" th:href="@{/contacts}">Контакты</a>
+        <a sec:authorize="hasRole('ROLE_ADMIN')" class="header__item" th:href="@{/admin}">Панель администратора</a>
       </nav>
       <div class="header__right">
         <a sec:authorize="isAnonymous()" class="header__item" th:href="@{/auth/login}">Войти</a>
@@ -28,6 +29,7 @@
 
       </div>
     </div>
+  <!--
   <span th:text="${#authentication.getDetails()}"></span>
   <span th:text="${#authentication.getCredentials()}"></span>
   <span th:text="${#authentication.getAuthorities()}"></span>
@@ -38,19 +40,79 @@
   <div th:text="${#authentication.getPrincipal()}"></div>
 
 
-  <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-
-
-
-
+  <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>-->
 </header>
+
+<div class="header" th:fragment="header_admin">
+
+  <form th:action="@{/logout}" method="post" th:hidden="true" name="logoutForm">
+    <input type="submit" value="Logout" />
+  </form>
+
+  <div class="header__container container">
+    <a th:href="@{/}">
+      <img src="/static/images/LogoRedesign.svg">
+    </a>
+    <nav class="header__menu">
+      <a class="header__item" th:href="@{/admin/requests}">Заявки</a>
+      <a class="header__item" th:href="@{/admin/users}">Список всех пользователей</a>
+      <a class="header__item" th:href="@{/admin/cars}">Список всех машин</a>
+    </nav>
+    <div class="header__right">
+      <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="header__item" id="logoutLink" href="javascript: document.logoutForm.submit()">Выйти</a>
+
+    </div>
+  </div>
+  <!--
+  <span th:text="${#authentication.getDetails()}"></span>
+  <span th:text="${#authentication.getCredentials()}"></span>
+  <span th:text="${#authentication.getAuthorities()}"></span>
+  <div sec:authorize="isAuthenticated()">
+    Welcome, <span sec:authentication="name">Username</span>
+  </div>
+
+  <div th:text="${#authentication.getPrincipal()}"></div>
+
+
+  <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>-->
+</div>
+
+
+
+
+
 
 <nav th:fragment="menu">
 
 </nav>
 
-<footer th:fragment="footer">
-  FOOTER
+<footer class="footer" th:fragment="footer">
+    <div class="container">
+      <div class="footer__center">
+        <img class="footer__logo" src="/static/images/logo.svg">
+
+        @2022 CrimeaCars
+      </div>
+      <div class="footer__container">
+        <div class="footer__item">
+          <img class="footer__image" src="/static/images/phone.svg">
+          Телефон: +7 978 777 77 77
+
+        </div>
+        <div class="footer__item">
+          <img class="footer__image" src="/static/images/geoTag.svg">
+          Местоположение: улица Горького, 15,
+          Симферополь, Республика Крым, Россия
+
+        </div>
+        <div class="footer__item">
+          <img class="footer__image" src="/static/images/email.svg">
+          Email: support@crimeacars.ru
+        </div>
+      </div>
+      <h1 class="h1_footer_orange">Прокат спортивных автомобилей: Ferrari, Lamborghini, Bmw, Nissan, Ford, Audi, Porsche / прокат спортивных автомобилей Симферополь, Севастополь, Ялта, Алушта, Евпатория, Керчь, Судак</h1>
+
+    </div>
 </footer>
 
 </body>

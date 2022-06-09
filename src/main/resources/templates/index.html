@@ -7,33 +7,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link th:insert="fragments/components :: link">
 
-  <title>Index</title>
+  <title>Главная</title>
 <body>
-
 
 <header th:fragment="headerfiles">
   <div th:insert="fragments/components :: header"></div>
 </header>
 
-<div class="container my-2">
+<div class="wrapper">
+  <div class="first_page">
+    <div class="container">
+      <h1 class="h1_common_orange">Прокат мечты</h1>
+      <h2 class="first_page-h2">Прикоснись к прекрасному!</h2>
+    </div>
+  </div>
+</div>
 
-  <h1>Car list</h1>
-<table border = "1" class="table table-striped table-responsive-md">
-  <thead>
-  <tr>
-    <th>Бренд авто</th>
-    <th>Модель авто</th>
-    <th>Цвет авто</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="car : ${listCars}">
-    <td th:text="${car.getColor()}"></td>
-    <td th:text="${car.getBrand()}"></td>
-  </tr>
-  </tbody>
-</table>
-  
+<div class="container">
+
+  <h2 class="h2_cars_black">Прокат спортивных автомобилей</h2>
+  <h1 class="h1_common_orange">Ознакомьтесь с нашим парком!</h1>
+
+  <div class="cars">
+
+    <div class="cars__item" th:each="car : ${listCars}">
+      <h1 class="h1_cars_black_item" th:text="${car.getBrand() + ' ' + car.getModel()}" >Brand + Model</h1>
+
+      <div class="cars__content">
+        <div class="cars__block">
+          <img src="/static/images/car1.svg">
+        </div>
+
+        <div class="cars__block__right">
+          <div class="cars__block__right__item"> <img class="cars__icon" src="/static/images/body_type.svg"> <h2 class="h2_cars_item_right" th:text="${car.getBody_type()}">Купе</h2> </div>
+          <div class="cars__block__right__item"> <img class="cars__icon" src="/static/images/engine.svg"> <h2 class="h2_cars_item_right" th:text="${car.getEngine_type()}">3.0l Twin Turbo</h2> </div>
+          <div class="cars__block__right__item"> <img class="cars__icon" src="/static/images/color.svg"> <h2 class="h2_cars_item_right" th:text="${car.getColor()}" >Красный</h2> </div>
+          <div class="cars__block__right__item"> <img class="cars__icon" src="/static/images/horse_power.svg"> <h2 class="h2_cars_item_right" th:text="${car.getHorse_power() + ' лошадей'}">450 лошадей</h2> </div>
+        </div>
+      </div>
+      <h1 class="h1_cars_price" th:text ="'Стоимость аренды: ' + ${car.getPrice_per_day()+ ' руб.' }">Стоимость аренды: 35000 руб.</h1>
+    </div>
+  </div>
+
+
+
+  <div class="container">
+    <div id="scroll_link_about" class="about_us">
+      <h2 class="h2_cars_black">О нас</h2>
+
+      <h1 class="h1_cars_black">Прокат спортивных и роскошных автомобилей Crimea Cars ориентирован на одну цель, а именно на ваше полное удовлетворение от аренды спортивного автомобиля у нас.
+        Мы гарантируем вам максимум удовольствия и комфорта от использования спортивных автомобилей в нашем прокате. Мы также стараемся, чтобы это удовольствие не было слишком дорогим.
+        <br><br>
+        Мы даем в аренду свои спортивные автомобили по всему Крыму и Севастополю и чаще всего в городах: Симферополь, Севастополь, Ялта, Алушта, Евпатория без взимания депозита и по хорошей цене.
+        Мы даем в аренду наши спортивные и роскошные автомобили ежедневно или на длительный срок.
+      </h1>
+      <img class="cars_map" src="/static/images/map.png">
+
+      <h1 class="h1_cars_black">Спортивные автомобили - это категория автомобилей, где больше внимания уделяется динамике вождения, чем практичности. При этом это гражданские автомобили, которые
+        должны соответствовать всем техническим нормам движения на дорогах общего пользования.
+      </h1>
+
+      <br>
+
+    </div>
+</div>
+
 </div>
 
 <footer th:fragment="footerfiles">

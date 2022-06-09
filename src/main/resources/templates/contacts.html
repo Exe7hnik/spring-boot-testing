@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <link th:insert="fragments/components :: link">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <title>Контакты</title>
+<body>
+<header th:fragment="headerfiles">
+    <div th:insert="fragments/components :: header"></div>
+</header>
+
+<div class="container">
+
+    <h2 class="h2_cars_black">Контакты</h2>
+    <h1 class="h1_common_orange">CrimeaCars прокат спортивных и роскошных автомобилей</h1>
+
+
+
+</div>
+
+
+<footer th:fragment="footerfiles">
+    <div th:insert="fragments/components :: footer"></div>
+</footer>
+
+</body>
+</html>

@@ -4,50 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <link th:insert="fragments/components :: link">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-    <title>Контакты</title>
+    <title>Профиль</title>
+</head>
 <body>
-<header th:fragment="headerfiles">
-    <div th:insert="fragments/components :: header"></div>
-</header>
+    <div class="wrapper__footer-down">
 
 
-<div th:object="${personBooking}">
-    <span th:text="*{'Здравствуйте ' + getPerson().getFull_name()}">...</span>
-    <br>
-    <span th:text="*{'Ваш email ' + getPerson().getEmail()}">...</span>
-    <br>
-    <span th:text="*{'Ваш номер телефона ' + getPerson().getPhone()}">...</span>
-    <br>
+            <div th:fragment="headerfiles" th:insert="fragments/components :: header"></div>
 
-</div>
 
-<!--<div th:each="book : ${bookings}">
-    <span th:text="*{book.getPerson().getFull_name()}">...</span>
-    <span th:text="*{book.getCar().getModel()}">...</span>
-    <span th:text="*{book.getDate_start()}">...</span>
-    <span th:text="*{book.getDate_end()}">...</span>
-    <span th:text="*{book.getTotal_price()}">...</span>
-    <span th:text="*{book.isStatus()}">...</span>
+        <div class="container">
 
-</div>-->
+            <div class="profile__container" th:object="${person}">
 
-<h2 class="h1_footer_orange">Здесь вы можете посмотреть ваши бронирования</h2>
+                <h2 class="h2_cars_black profile__center">Профиль</h2>
 
-<div th:object="${personBooking}">
-    <span th:text="*{getCar().getBrand()}">...</span>
-    <span th:text="*{getCar().getModel()}">...</span>
-    <span th:text="*{getDate_start()}">...</span>
-    <span th:text="*{getDate_end()}">...</span>
-    <span th:text="*{getTotal_price()}">...</span>
-    <span th:text="*{isStatus()}">...</span>
+                <h1 class="profile__h1-black" th:text="*{'Здравствуйте ' + getFull_name()}">Здравствуйте Admin</h1>
+                <h1 class="profile__h1-black" th:text="*{'Ваш email ' + getEmail()}">Ваш email admin@admin.ru</h1>
+                <h1 class="profile__h1-black" th:text="*{'Ваш номер телефона ' + getPhone()}">Ваш номер телефона +79787777777</h1>
 
-</div>
+                <div class="profile__middle-title">
+                    <h1 class="h1_common_orange">
+                        Здесь вы можете посмотреть ваши бронирования
+                    </h1>
+                </div>
 
-<footer th:fragment="footerfiles">
-    <div th:insert="fragments/components :: footer"></div>
-</footer>
+<!--                <div th:if="${personBooking != null}" th:object="${personBooking}">
+                    <span  th:text="*{getCar().getBrand() }">...</span>
+                    <span  th:text="*{getCar().getModel()}">...</span>
+                    <span  th:text="*{getDate_start()}">...</span>
+                    <span  th:text="*{getDate_end()}">...</span>
+                    <span  th:text="*{getTotal_price()}">...</span>
+                    <span  th:text="*{isStatus()}">...</span>
 
+                </div>-->
+
+                <div class="profile__footer" th:object="${personBooking}">
+                    <img src="/static/images/note.svg">
+                    <div class="profile__footer__item">
+                        <span  th:text="*{getCar().getBrand() }">...</span>
+                        <span  th:text="*{getCar().getModel()}">...</span>
+                        <span  th:text="*{getDate_start()}">...</span>
+                        <span  th:text="*{getDate_end()}">...</span>
+                        <span  th:text="*{getTotal_price()}">...</span>
+                        <span  th:text="*{isStatus()}">...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div th:each="book : ${bookings}">
+            <span th:text="*{book.getPerson().getFull_name()}">...</span>
+            <span th:text="*{book.getCar().getModel()}">...</span>
+            <span th:text="*{book.getDate_start()}">...</span>
+            <span th:text="*{book.getDate_end()}">...</span>
+            <span th:text="*{book.getTotal_price()}">...</span>
+            <span th:text="*{book.isStatus()}">...</span>
+
+        </div>-->
+
+        <div class="wrapper__down">
+            <footer style="width: 100%;" th:fragment="footerfiles">
+            <!--<footer style="width: 100%;" th:fragment="footerfiles">-->
+                <div th:insert="fragments/components :: footer"></div>
+            </footer>
+        </div>
+
+    </div>
 </body>
 </html>

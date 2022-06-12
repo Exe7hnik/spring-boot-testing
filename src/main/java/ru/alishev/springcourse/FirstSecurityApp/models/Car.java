@@ -38,6 +38,9 @@ public class Car {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "car_img")
+    private String car_img;
+
     @Column(name = "view_or_not")
     private boolean view_or_not;
 
@@ -47,8 +50,6 @@ public class Car {
     public Car() {
 
     }
-
-
 
     public Car(
                int id,
@@ -60,6 +61,7 @@ public class Car {
                int horse_power,
                int price_per_day,
                String description,
+               String car_img,
                boolean view_or_not
     ) {
 
@@ -72,6 +74,7 @@ public class Car {
         this.horse_power = horse_power;
         this.price_per_day = price_per_day;
         this.description = description;
+        this.car_img = car_img;
         this.view_or_not = view_or_not;
     }
     public int getId() {
@@ -146,6 +149,14 @@ public class Car {
         this.description = description;
     }
 
+    public String getCar_img() {
+        return car_img;
+    }
+
+    public void setCar_img(String car_img) {
+        this.car_img = car_img;
+    }
+
     public boolean isView_or_not() {
         return view_or_not;
     }
@@ -166,6 +177,7 @@ public class Car {
                 ", horse_power=" + horse_power +
                 ", price_per_day=" + price_per_day +
                 ", description='" + description + '\'' +
+                ", car_img='" + car_img + '\'' +
                 ", view_or_not=" + view_or_not +
                 '}';
     }

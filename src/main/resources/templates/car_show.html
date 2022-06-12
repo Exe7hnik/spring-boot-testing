@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <link th:insert="fragments/components :: link">
@@ -14,6 +15,15 @@
 <p th:text="${car.getModel() + ', ' + car.getBrand()}">VALUE</p>
 <p th:text="${'Description: ' + car.description}">VALUE</p>
 <p th:text="${car.getId()}">VALUE</p>
+
+<div th:each="book : ${bookings}">
+    <span th:text="*{'Id машины: ' + book.getCar().getId()}">...</span>
+    <span th:text="*{book.getDate_start()}">...</span>
+    <span th:text="*{book.getDate_end()}">...</span>
+    <span th:text="*{book.isStatus()}">...</span>
+
+</div>
+
 
 <footer th:fragment="footerfiles">
     <div th:insert="fragments/components :: footer"></div>

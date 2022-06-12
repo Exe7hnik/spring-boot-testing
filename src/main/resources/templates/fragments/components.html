@@ -24,7 +24,7 @@
       <div class="header__right">
         <a sec:authorize="isAnonymous()" class="header__item" th:href="@{/auth/login}">Войти</a>
         <a sec:authorize="isAnonymous()" class="header__item" th:href="@{/auth/registration}">Регистрация</a>
-        <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="header__item" th:href="@{/profile/{id}(id=${personId})}" >Профиль</a>
+        <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="header__item" th:href="@{/profile}" >Профиль</a>
         <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="header__item" id="logoutLink" href="javascript: document.logoutForm.submit()">Выйти</a>
 
       </div>
@@ -59,7 +59,8 @@
       <a class="header__item" th:href="@{/admin/cars}">Список всех машин</a>
     </nav>
     <div class="header__right">
-      <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="header__item" id="logoutLink" href="javascript: document.logoutForm.submit()">Выйти</a>
+      <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" class="header__item" id="logoutLink"
+         href="javascript: document.logoutForm.submit()">Выйти</a>
 
     </div>
   </div>

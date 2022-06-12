@@ -42,7 +42,7 @@ public class PersonDetailsService implements UserDetailsService {
     }
 
 
-/*    public Person updatePerson(int id, Person oldPerson) {
+   public Person updatePerson(int id, Person oldPerson) {
         oldPerson.setId(oldPerson.getId()) ; // pass the associated id for which you want to update and set that id to the same person [ basically setting the same id to the oldPerson ] this way it will not create new entry because here we are not making new ID ]
         oldPerson.setUsername(oldPerson.getUsername());
 
@@ -51,5 +51,5 @@ public class PersonDetailsService implements UserDetailsService {
         oldPerson.setEmail(oldPerson.getEmail());
 
         return peopleRepository.save(oldPerson); // now save [old person with updated content but same id as it was before ]
-    }*/
+    }
 }

@@ -1,18 +1,21 @@
 html {
-    scroll-behavior: smooth; /* свойство scroll-behavior не наследуется, применяется к прокручиваемым блокам */
+    scroll-behavior: smooth; /* свойство scroll-behavior не наследуется, применяется к прокручиваемым блокам */ 
+  }
+*{
+    box-sizing: border-box;
 }
 
 @font-face {
     font-family: "Raleway-Bold";
     /* Браузер сначала попробует найти шрифт локально */
     src: url("/static/fonts/Raleway-Bold.ttf") format("truetype");
-}
+  }
 
 @font-face {
     font-family: "Raleway-Regular";
     /* Браузер сначала попробует найти шрифт локально */
     src: url("/static/fonts/Raleway-Regular.ttf") format("truetype");
-}
+  }
 
 body {
     margin: 0;
@@ -23,7 +26,7 @@ body {
     max-width: 1440px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 15px;
+    
 }
 
 
@@ -113,7 +116,7 @@ body {
     font-family: 'Raleway-Bold';
     font-size: 18px;
     line-height: 25px;
-
+ 
     margin-bottom: 20px;
     color: white;
 }
@@ -154,9 +157,9 @@ body {
     line-height: 23px;
     display: flex;
     align-items: center;
-
+    
     color: #FF4D00;
-}
+    }
 
 .cars {
     max-width: 1100px;
@@ -176,8 +179,8 @@ body {
     margin-right: 10px;
     background-color: #F7F7F7;
     box-shadow: 4px 4px 4px #FF4D00;
-
-
+    
+    
 }
 
 .h1_cars_black_item {
@@ -204,16 +207,16 @@ body {
 
 .h2_cars_item_right {
     font-family: 'Raleway-Bold';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 14px;
-    /* identical to box height */
+font-style: normal;
+font-weight: 700;
+font-size: 12px;
+line-height: 14px;
+/* identical to box height */
 
 
 
 
-    color: #333333;
+color: #333333;
 }
 
 .cars_logo {
@@ -233,7 +236,7 @@ body {
     font-family: 'Raleway-Regular';
     font-size: 20px;
     line-height: 23px;
-    font-weight: 400;
+    font-weight: 500;
     display: flex;
     align-items: center;
     color: black;
@@ -249,7 +252,6 @@ body {
     text-decoration: none;
     padding: 7px;
     border: 1px solid;
-    margin-left: 25px;
 }
 
 .cars_map {
@@ -286,3 +288,249 @@ body {
 .cars_bottom {
     display: flex;
 }
+/* КОНТАКТЫ */
+.contact__container {
+    max-width: 1070px;
+    margin: 0 auto;
+    
+}
+
+.contact__container__body {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.contact__container__left {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 700px;
+}
+
+.contact__item {
+
+    width: 50%;
+}
+
+.contact__container__right {
+
+}
+
+.contact__container-bottom {
+    display: flex;
+    align-items:center;
+}
+
+.contact__bottom-vote p{
+    font-family: 'Raleway-Regular';
+    font-style: normal;
+    
+    font-size: 15px;
+    line-height: 128%;
+    /* or 19px */
+    color: #000000;
+}
+
+
+
+.contact__h1-item {
+    font-family: 'Raleway-Regular';
+    font-style: normal;
+    font-size: 25px;
+    line-height: 128%;
+    text-align: justify;
+    color: #000000;
+}
+
+.contact__p-item {
+    font-family: 'Raleway-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    padding-right: 44px;
+
+    color: #000000;
+}
+
+/* AUTH */
+
+.auth {
+    height: 100vh;
+}
+
+.auth__container {
+    height: 100%;
+    display: flex;
+    align-items:center;
+}
+
+.auth__left {
+    width: 50%;
+    background-image: url("/static/images/bacground-auth.png");
+    height: 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: cover;
+}
+
+
+.auth__right {
+    margin-left: 127px;
+}
+
+.auth__form-container {
+    max-width: 427px;
+}
+
+.h1_auth-gray {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    /* or 156% */
+    
+    color: #8692A6;
+}
+
+.h1_auth-gray a{
+    text-decoration: none;
+    color: #517FC0;
+}
+
+.common__form {
+    box-sizing: border-box;
+}
+
+.common__form label {
+    margin-bottom: 9px;
+    display: inline-block;
+    color: #696F79;
+}
+
+.common__form input[type="submit"] {
+    border: none;
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    background-color: #1565D8;
+    outline: none;
+    margin-top: 30px;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.8s;
+}
+
+.common__form input[type="submit"]:hover {
+    opacity: 0.75;
+}
+
+.common__form h1 {
+    padding-bottom: 10px;
+    text-decoration: #F5F5F5;
+}
+
+.common__form-item {
+    width: 100%;
+    border: 1px solid #8692A6;
+    outline: none;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+}
+
+.auth__left-container {
+    max-width: 475px;
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.auth__left-logo {
+    display: flex;
+    justify-content: flex-start;
+    position: absolute;
+    left: 0;
+    top: 65px;
+}
+
+.auth__left-decor {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.auth__left-container p{
+    font-family: 'Raleway-Bold';
+    font-size: 20px;
+    line-height: 30px;
+    color: white;
+}
+
+/* PROFILE */
+
+.profile__container {
+    max-width: 1070px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+
+    
+}
+
+.profile__h1-black {
+    font-family: 'Raleway-Bold';
+    font-size: 20px;
+    line-height: 30px;
+    color: black;
+}
+
+.profile__middle-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    margin-top: 30px;
+}
+
+.profile__footer {
+    display: flex;
+    align-items: center;
+
+}
+
+.profile__footer__item {
+    font-family: 'Raleway-Bold';
+    font-size: 25px;
+    line-height: 30px;
+    color: black;
+    background: #FFFFFF;
+    border: 1px solid #FF4C00;
+    border-radius: 23px;
+}
+
+.profile__center {
+    justify-content: center;
+    margin-top: 50px;
+}
+
+/* FOOTER DOWN */
+.wrapper__footer-down {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper__down {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+
+/* ************** */

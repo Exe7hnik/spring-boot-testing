@@ -60,6 +60,7 @@ public class CarService {
                 newCar.setPrice_per_day(car.getPrice_per_day());
                 newCar.setView_or_not(car.isView_or_not());
                 newCar.setDescription(car.getDescription());
+                newCar.setCar_img(car.getCar_img());
 
                 newCar = carRepository.save(newCar);
 

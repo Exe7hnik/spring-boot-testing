@@ -2,6 +2,7 @@ package ru.alishev.springcourse.FirstSecurityApp.services;
 
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import ru.alishev.springcourse.FirstSecurityApp.models.Booking;
 import ru.alishev.springcourse.FirstSecurityApp.models.Car;
@@ -31,5 +32,7 @@ public class BookingService {
         bookingRepository.getById(id);
 
     }
+
+
 
 }

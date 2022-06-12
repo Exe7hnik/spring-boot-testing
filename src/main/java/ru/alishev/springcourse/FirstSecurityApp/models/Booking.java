@@ -1,6 +1,10 @@
 package ru.alishev.springcourse.FirstSecurityApp.models;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "Booking")
@@ -12,10 +16,10 @@ public class Booking {
     private int id;
 
     @Column(name = "date_start")
-    private int date_start;
+    private Date date_start;
 
     @Column(name = "date_end")
-    private int date_end;
+    private Date date_end;
 
     @Column(name = "total_price")
     private int total_price;
@@ -25,9 +29,11 @@ public class Booking {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @NotFound(action = NotFoundAction.IGNORE)
     private Car car;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @NotFound(action = NotFoundAction.IGNORE)
     private Person person;
 
     public Booking() {
@@ -35,8 +41,8 @@ public class Booking {
     }
 
     public Booking(int id,
-                   int date_start,
-                   int date_end,
+                   Date date_start,
+                   Date date_end,
                    int total_price,
                    boolean status
                    ) {
@@ -55,19 +61,19 @@ public class Booking {
         this.id = id;
     }
 
-    public int getDate_start() {
+    public Date getDate_start() {
         return date_start;
     }
 
-    public void setDate_start(int date_start) {
+    public void setDate_start(Date date_start) {
         this.date_start = date_start;
     }
 
-    public int getDate_end() {
+    public Date getDate_end() {
         return date_end;
     }
 
-    public void setDate_end(int date_end) {
+    public void setDate_end(Date date_end) {
         this.date_end = date_end;
     }
 

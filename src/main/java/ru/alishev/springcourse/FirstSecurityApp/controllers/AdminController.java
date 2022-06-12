@@ -61,7 +61,7 @@ public class AdminController {
     }
 
     //@PatchMapping("/admin/{id}")  ОБВОНИТЬ ПОльзоваТЕЛЯ
-/*    @RequestMapping(value = "/admin/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/{id}", method = RequestMethod.POST)
     public String update(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult,
                          @PathVariable("id") int id) {
         if (bindingResult.hasErrors())
@@ -69,7 +69,7 @@ public class AdminController {
 
         personDetailsService.updatePerson(id, person);
         return "redirect:/admin/users";
-    }*/
+    }
 
     @GetMapping("/admin/cars")
     public String allCarsAdmin(Model model) {
@@ -103,10 +103,10 @@ public class AdminController {
     }*/
 
 
-/*    @RequestMapping(path = "/admin/cars/{id}", method = RequestMethod.POST)
+    @RequestMapping(path = "/admin/cars/{id}", method = RequestMethod.POST)
     public String createOrUpdateEmployee(Car car)
     {
         carService.createOrUpdateCar(car);
         return "redirect:/";
-    }*/
+    }
 }

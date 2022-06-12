@@ -17,7 +17,7 @@ public class Person {
     private int id;
 
     @NotEmpty(message = "Имя не должно быть пустым")
-    @Size(min = 2, max = 100, message = "Имя должно быть от 2 до 100 символов длиной")
+    @Size(min = 2, max = 30, message = "Имя должно быть от 2 до 100 символов длиной")
     @Column(name = "username")
     private String username;
 
@@ -30,6 +30,10 @@ public class Person {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "pass_id")
+    private int pass_id;
+
+    @NotEmpty(message = "Пароль не может быть пустым")
     @Column(name = "password")
     private String password;
 
@@ -49,6 +53,7 @@ public class Person {
             String full_name,
             long phone,
             String email,
+            int pass_id,
             String password,
             String role
     ) {
@@ -57,6 +62,7 @@ public class Person {
         this.full_name = full_name;
         this.phone = phone;
         this.email = email;
+        this.pass_id = pass_id;
         this.password = password;
         this.role = role;
     }
@@ -101,6 +107,14 @@ public class Person {
         this.email = email;
     }
 
+    public int getPass_id() {
+        return pass_id;
+    }
+
+    public void setPass_id(int pass_id) {
+        this.pass_id = pass_id;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -125,6 +139,7 @@ public class Person {
                 ", full_name='" + full_name + '\'' +
                 ", phone=" + phone +
                 ", email='" + email + '\'' +
+                ", pass_id='" + pass_id + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 '}';

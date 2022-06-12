@@ -2,37 +2,70 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Registration</title>
+    <title>Логин</title>
+    <link th:insert="fragments/components :: link">
 </head>
 <body>
-<h2>Зарегестрируйте аккаунт</h2>
-<form th:method="POST" th:action="@{/auth/registration}" th:object="${person}">
-    <label for="username">Ваш логин: </label>
-    <input type="text" th:field="*{username}" id="username"/>
-    <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</div>
-    <br/>
+<div class="auth">
+    <div class="auth__container">
+        <div class="auth__left">
+            <div class="auth__left-container">
+                <div class="auth__left-logo">
+                    <a th:href="@{/}">
+                        <img src="/static/images/logo-white.svg">
+                    </a>
+                </div>
+                <p>
+                    Мы предлагаем людям роскошние автомобили
+                    по всему Крыму и Севастополю на протяженнии
+                    многих лет. Наша задача состоит в том что бы
+                    вы получили максимально приятный опыт
+                    взаимодействия с нашей компанией.
+                </p>
+                <div class="auth__left-decor">
+                    <img src="/static/images/corner.svg">
+                </div>
 
-    <label for="full_name">Ваше ФИО: </label>
-    <input type="text" th:field="*{full_name}" id="full_name"/>
-    <div style="color:red" th:if="${#fields.hasErrors('full_name')}" th:errors="*{full_name}">FullName Error</div>
-    <br/>
+            </div>
+        </div>
+        <div class="auth__right">
+            <div class="auth__form-container">
+                <h2 class="h2_cars_black">Зарегистрируйте аккаунт.</h2>
+                <h1 class="h1_auth-gray">Для удобного взаимодействия при аренде автомобиля требуются ваши данные.</h1>
 
-    <label for="phone">Ваш номер телефона: </label>
-    <input type="text" th:field="*{phone}" id="phone"/>
-    <div style="color:red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Phone Error</div>
-    <br/>
+                <form class="common__form" th:method="POST" th:action="@{/auth/registration}" th:object="${person}">
+                    <label for="username">Ваш логин*</label>
+                    <input class="common__form-item" type="text" name="username" id="username" placeholder="Username"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</div>
 
-    <label for="email">Электронная почта: </label>
-    <input type="text" th:field="*{email}" id="email"/>
-    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
-    <br/>
+                    <label for="full_name">Вашe ФИО*</label>
+                    <input class="common__form-item" type="text" name="full_name" id="full_name" placeholder="Иванов Иван Иванович"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('full_name')}" th:errors="*{full_name}">FullName Error</div>
 
-    <label for="password">Придумайте пароль: </label>
-    <input type="password" th:field="*{password}" id="password"/>
-    <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
-    <br/>
-    <input type="submit" value="Sign up!"/>
-</form>
+                    <label for="full_name">Паспортные данные серия и номер*</label>
+                    <input class="common__form-item" type="text" name="pass_id" id="pass_id" placeholder="77 77 777777"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('pass_id')}" th:errors="*{pass_id}">Pass_id Error</div>
+
+                    <label for="phone">Ваш номер телефона*</label>
+                    <input class="common__form-item" type="text" name="phone" id="phone" placeholder="+7978...."/>
+                    <div style="color:red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Phone Error</div>
+
+                    <label for="email">Электронная почта*</label>
+                    <input class="common__form-item" type="text" name="email" id="email" placeholder="Введите ваш email"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+
+                    <label for="password">Придумайте пароль: </label>
+                    <input class="common__form-item" type="password" name="password" id="password" placeholder="Ваш пароль"/>
+                    <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
+
+                    <input type="submit" value="Зарегестрировать аккаунт"/>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 
 </body>
 </html>

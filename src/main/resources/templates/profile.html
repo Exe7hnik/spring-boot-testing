@@ -15,14 +15,14 @@
 
         <div class="container">
 
-            <div class="profile__container" th:object="${person}">
+            <div class="profile__container" >
 
                 <h2 class="h2_cars_black profile__center">Профиль</h2>
-
-                <h1 class="profile__h1-black" th:text="*{'Здравствуйте ' + getFull_name()}">Здравствуйте Admin</h1>
-                <h1 class="profile__h1-black" th:text="*{'Ваш email ' + getEmail()}">Ваш email admin@admin.ru</h1>
-                <h1 class="profile__h1-black" th:text="*{'Ваш номер телефона ' + getPhone()}">Ваш номер телефона +79787777777</h1>
-
+                    <div th:object="${person}">
+                            <h1 class="profile__h1-black" th:text="*{'Здравствуйте ' + getFull_name()}">Здравствуйте Admin</h1>
+                            <h1 class="profile__h1-black" th:text="*{'Ваш email ' + getEmail()}">Ваш email admin@admin.ru</h1>
+                            <h1 class="profile__h1-black" th:text="*{'Ваш номер телефона ' + getPhone()}">Ваш номер телефона +79787777777</h1>
+                    </div>
                 <div class="profile__middle-title">
                     <h1 class="h1_common_orange">
                         Здесь вы можете посмотреть ваши бронирования
@@ -38,16 +38,17 @@
                     <span  th:text="*{isStatus()}">...</span>
 
                 </div>-->
-
-                <div class="profile__footer" th:object="${personBooking}">
-                    <img src="/static/images/note.svg">
-                    <div class="profile__footer__item">
-                        <span  th:text="*{getCar().getBrand() }">...</span>
-                        <span  th:text="*{getCar().getModel()}">...</span>
-                        <span  th:text="*{getDate_start()}">...</span>
-                        <span  th:text="*{getDate_end()}">...</span>
-                        <span  th:text="*{getTotal_price()}">...</span>
-                        <span  th:text="*{isStatus()}">...</span>
+                <div th:if="${ not#lists.isEmpty(personBooking)}">
+                    <div class="profile__footer" th:each="book : ${personBooking}">
+                        <img src="/static/images/note.svg">
+                        <div class="profile__footer__item">
+                            <span  th:text="*{book.getCar().getBrand() }">...</span>
+                            <span  th:text="*{book.getCar().getModel()}">...</span>
+                            <span  th:text="*{book.getDate_start()}">...</span>
+                            <span  th:text="*{book.getDate_end()}">...</span>
+                            <span  th:text="*{book.getTotal_price()}">...</span>
+                            <span  th:text="*{book.isStatus()}">...</span>
+                        </div>
                     </div>
                 </div>
             </div>

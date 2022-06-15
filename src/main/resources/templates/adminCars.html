@@ -3,46 +3,41 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
-  <link th:insert="fragments/components :: link">
   <title>Admin Cars</title>
+  <link th:insert="fragments/components :: link">
+</head>
 <body>
-<h2>Машины</h2>
-<header th:fragment="headerfiles">
-  <div th:insert="fragments/components :: header"></div>
-</header>
+<div th:fragment="headerfiles">
+  <div th:insert="fragments/components :: header_admin"></div>
+</div>
 
 <div>
+  <div class="container">
+  <h2 class="h2_cars_black profile__center">Список автомобилей</h2>
 
-  <h1>Car list</h1>
-  <table>
-    <thead>
-    <tr>
-
-      <th>ID</th>
-      <th>Бренд авто</th>
-      <th>Модель авто</th>
-      <th>Цвет авто</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="car : ${listCars}">
-      <td th:text="${car.getId()}"></td>
-      <td th:text="${car.getBrand()}"></td>
-      <td th:text="${car.getModel()}"></td>
-      <td th:text="${car.getColor()}"></td>
-      <td>
-        <a th:href="@{/admin/cars/{id}(id=${car.getId()})}">Подробнее</a>
-      </td>
-
-    </tr>
-    </tbody>
-  </table>
-
-  <div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
-    <form th:action="@{/logout}" th:method="POST">
-      <input type="submit" value="Logout" />
-    </form>
+  <div th:if="${ not#lists.isEmpty(listCars)}">
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Бренд</th>
+        <th>Модель</th>
+        <th>Цвет</th>
+        <th>Обновить информацию</th>
+        <th><a th:href="@{/admin/cars/new}">Добавить авто</a></th>
+      </tr>
+      <tr th:each="car : ${listCars}">
+        <td th:text="${car.getId()}"></td>
+        <td th:text="${car.getBrand()}"></td>
+        <td th:text="${car.getModel()}"></td>
+        <td th:text="${car.getColor()}"></td>
+        <td >
+          <a th:href="@{/admin/cars/{id}(id=${car.getId()})}">Обновить</a>
+        </td>
+      </tr>
+    </table>
   </div>
+
+</div>
 </div>
 
 <footer th:fragment="footerfiles">

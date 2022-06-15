@@ -4,29 +4,104 @@
 <head>
     <meta charset="UTF-8">
     <link th:insert="fragments/components :: link">
-    <title>Title</title>
+    <title>Карточка автомобиля</title>
 </head>
 <body>
-<h2>Карточка авто</h2>
 <header th:fragment="headerfiles">
     <div th:insert="fragments/components :: header"></div>
 </header>
 
-<p th:text="${car.getModel() + ', ' + car.getBrand()}">VALUE</p>
-<p th:text="${'Description: ' + car.description}">VALUE</p>
-<p th:text="${car.getId()}">VALUE</p>
+<div class="contact__container">
+    <h2 class="h2_cars_black" th:text="${car.getBrand() + ' ' + car.getModel()}">auto</h2>
+    <h1 class="h1_common_orange">CrimeaCars прокат спортивных и роскошных автомобилей</h1>
+    <img style="min-width: 900px;" th:src="'/static/images/car' + ${car.getCar_img()} + '.svg'">
+    <h2 class="h2_cars_black" th:text="${'Цена На Аренду в сутки: ' + car.price_per_day}">VALUE</h2>
+    <h1 class="h1_cars_black" th:text="${car.description}">VALUE</h1>
 
-<div th:each="book : ${bookings}">
-    <span th:text="*{'Id машины: ' + book.getCar().getId()}">...</span>
-    <span th:text="*{book.getDate_start()}">...</span>
-    <span th:text="*{book.getDate_end()}">...</span>
-    <span th:text="*{book.isStatus()}">...</span>
+<!--    <p style="display: none" id="idAuto" th:text="${car.getId()}">VALUE</p>
+    <p style="display: none" id="idPerson" th:text="${personId}">VALUE</p>-->
+    <p style="display: none" id="carPricePerDay" th:text="${car.price_per_day}">VALUE</p>
+
+
+
+
+<div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
+
+        <!--<p  th:text="${personId}">VALUE</p>-->
+
+        <form action="#" class="common__form" th:action="@{/cars/{id}}" th:object="${booking}" method="post">
+
+           <input type="hidden" id="id" th:field="*{id}">
+
+
+            <label for="date_start">Дата начала аренды</label>
+            <input type="date" th:field="*{date_start}" id="date_start" name="date_start">
+
+           <label for="date_end">Дата окончания аренды</label>
+            <input type="date" th:field="*{date_end}" id="date_end" name="date_end">
+
+            <label for="total_price">Цена: </label>
+            <input disabled type="text" th:field="*{total_price}" id="total_price" name="total_price">
+
+            <!--<input  type="hidden" class="common__form-item" th:field="*{status}" name="status" id="status" placeholder="Ив"/>-->
+
+            <input type="submit" value="Забронировать"/>
+</form>
+    <br>
 
 </div>
 
-
+</div>
 <footer th:fragment="footerfiles">
     <div th:insert="fragments/components :: footer"></div>
 </footer>
+<script>
+
+    let carPricePerDay = +(document.querySelector('#carPricePerDay').innerHTML)
+
+    let count_price = 0
+
+    let taken_date_start = 0
+
+    let taken_date_end = 5
+
+    date_start = document.querySelector('#date_start')
+
+    date_end = document.querySelector('#date_end')
+
+    date_start.addEventListener('change',function (event){
+        const takenDate = event.target.value
+        taken_date_start = +(takenDate.split('-').join(''))
+        if(taken_date_end - taken_date_start >= 0) {
+
+
+            count_price = (taken_date_end - taken_date_start) * carPricePerDay
+            console.log(count_price)
+
+            document.querySelector('#total_price').value = count_price
+        }
+
+    })
+
+    date_end.addEventListener('change', function (event){
+        const takenDate = event.target.value
+        taken_date_end = +(takenDate.split('-').join(''))
+        if(taken_date_end - taken_date_start >= 0) {
+
+
+            count_price = (taken_date_end - taken_date_start) * carPricePerDay
+            console.log(count_price)
+            document.querySelector('#total_price').value = count_price
+        }
+    })
+
+
+
+/*
+    const value = document.querySelector('#carPricePerDay').innerHTML;
+    document.querySelector('#car_id').value=value;
+*/
+
+</script>
 </body>
 </html>

@@ -35,7 +35,7 @@
 
       <div class="cars__content">
         <div class="cars__block">
-          <img src="/static/images/car1.svg">
+          <img th:src="'/static/images/car' + ${car.getCar_img()} + '.svg'">
         </div>
 
         <div class="cars__block__right">

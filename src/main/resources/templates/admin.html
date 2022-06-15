@@ -11,15 +11,13 @@
     <div th:insert="fragments/components :: header_admin"></div>
 </div>
 
+<div class="wrapper__admin">
 
-<a  th:href="@{/admin/requests}">Заявки</a>
-<a  th:href="@{/admin/users}">Список всех пользователей</a>
-<a  th:href="@{/admin/cars}">Список всех автомобилей</a>
+</div>
 
-
-<form th:action="@{/logout}" th:method="POST">
-    <input type="submit" value="Logout" />
-</form>
+<footer th:fragment="footerfiles">
+    <div th:insert="fragments/components :: footer"></div>
+</footer>
 
 </body>
 </html>

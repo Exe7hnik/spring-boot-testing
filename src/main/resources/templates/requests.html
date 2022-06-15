@@ -4,32 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin page</title>
+    <link th:insert="fragments/components :: link">
 </head>
 <body>
-<div sec:authorize="hasRole('ROLE_ADMIN')">
-    This will only be displayed if authenticated user has role ROLE_ADMIN.
+<div th:fragment="headerfiles">
+    <div th:insert="fragments/components :: header_admin"></div>
 </div>
 
-<div sec:authorize="hasRole('ROLE_USER')">
-    This will only be displayed if authenticated user has role ROLE_USER.
+<div class="container">
+
+<h2 class="h2_cars_black profile__center">Заявки</h2>
+<h1 class="h1_cars_black_item" style="justify-content: flex-start">Заявки в ожидании</h1>
+<div th:if="${ not#lists.isEmpty(bookings)}">
+    <table>
+        <tr>
+            <th>Имя пользователя</th>
+            <th>Телефон пользователя</th>
+            <th>Id авто</th>
+            <th>Бренд и модель авто</th>
+            <th>Дата начала аренды</th>
+            <th>Дата конца аренды</th>
+            <th>Общая стоимость</th>
+            <th>Статус</th>
+            <th></th>
+        </tr>
+        <tr th:each="book : ${bookings}">
+            <td th:text="${book.getPerson().full_name}"></td>
+            <td th:text="${book.getPerson().phone}"></td>
+            <td th:text="${book.getCar().getId()}"></td>
+            <td th:text="${book.getCar().brand + ' ' + book.getCar().model}"></td>
+            <td th:text="${book.date_start}"></td>
+            <td th:text="${book.date_end}"></td>
+            <td th:text="${book.total_price}"></td>
+            <td th:text="${book.status}"></td>
+            <td >
+               обновить статус <!--<a th:href="@{/admin/cars/{id}(id=${car.getId()})}">Обновить</a>-->
+            </td>
+        </tr>
+    </table>
+
+
+    <h1 class="h1_cars_black_item" style="justify-content: flex-start">Подтвержденные заявки</h1>
+    <div th:if="${ not#lists.isEmpty(trueBookings)}">
+        <table>
+            <tr>
+                <th>Имя пользователя</th>
+                <th>Телефон пользователя</th>
+                <th>Id авто</th>
+                <th>Бренд и модель авто</th>
+                <th>Дата начала аренды</th>
+                <th>Дата конца аренды</th>
+                <th>Общая стоимость</th>
+                <th>Статус</th>
+                <th></th>
+            </tr>
+            <tr th:each="book : ${trueBookings}">
+                <td th:text="${book.getPerson().full_name}"></td>
+                <td th:text="${book.getPerson().phone}"></td>
+                <td th:text="${book.getCar().getId()}"></td>
+                <td th:text="${book.getCar().brand + ' ' + book.getCar().model}"></td>
+                <td th:text="${book.date_start}"></td>
+                <td th:text="${book.date_end}"></td>
+                <td th:text="${book.total_price}"></td>
+                <td th:text="${book.status}"></td>
+                <td >
+                    обновить статус <!--<a th:href="@{/admin/cars/{id}(id=${car.getId()})}">Обновить</a>-->
+                </td>
+            </tr>
+        </table>
 </div>
-
-<div th:each="book : ${bookings}">
-    <span th:text="*{'Имя пользователя: ' + book.getPerson().getUsername()}">...</span>
-    <span th:text="*{'Телефон: ' + book.getPerson().getPhone()}">...</span>
-    <span th:text="*{'Id машины: ' + book.getCar().getId()}">...</span>
-    <span th:text="*{'Бренд и модель: ' + book.getCar().getBrand() + ' ' + book.getCar().getModel()}">...</span>
-    <span th:text="*{book.getDate_start()}">...</span>
-    <span th:text="*{book.getDate_end()}">...</span>
-    <span th:text="*{book.getTotal_price()}">...</span>
-    <span th:text="*{book.isStatus()}">...</span>
-
 </div>
-
-
-<form th:action="@{/logout}" th:method="POST">
-    <input type="submit" value="Logout" />
-</form>
-
+    </div>
 </body>
 </html>

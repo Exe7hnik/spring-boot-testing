@@ -534,3 +534,22 @@ color: #333333;
 }
 
 /* ************** */
+
+.wrapper__admin {
+    background-image: url("/static/images/admin-back.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 631px;
+    position: relative;
+}
+
+.container__user-edit {
+    max-width: 500px;
+}
+
+table,th,td {
+    border: 2px solid #1C1C1C;
+    border-collapse: collapse;
+    padding: 5px;
+    margin: auto;
+}

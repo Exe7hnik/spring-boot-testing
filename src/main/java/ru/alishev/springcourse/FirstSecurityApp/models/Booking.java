@@ -2,6 +2,7 @@ package ru.alishev.springcourse.FirstSecurityApp.models;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,9 +17,11 @@ public class Booking {
     private int id;
 
     @Column(name = "date_start")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_start;
 
     @Column(name = "date_end")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_end;
 
     @Column(name = "total_price")
@@ -30,10 +33,12 @@ public class Booking {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @NotFound(action = NotFoundAction.IGNORE)
+    @JoinColumn(name = "car_id")
     private Car car;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @NotFound(action = NotFoundAction.IGNORE)
+    @JoinColumn(name = "person_id")
     private Person person;
 
     public Booking() {

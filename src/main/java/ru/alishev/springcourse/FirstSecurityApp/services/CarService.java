@@ -35,21 +35,16 @@ public class CarService {
         carRepository.deleteCarByIdIs(id);
     }
 
-    public Car createOrUpdateCar(Car car)
-    {
-        if(car.getId() == 0)
-        {
+    public Car createOrUpdateCar(Car car) {
+        if(car.getId() == 0) {
             car = carRepository.save(car);
 
             return car;
         }
-        else
-        {
+        else {
             Optional<Car> carUpdate = carRepository.findById(car.getId());
-           // 1,купе,бмв,красный,оч хорошая машина,два литра,333,232,1000,true
 
-            if(carUpdate.isPresent())
-            {
+            if(carUpdate.isPresent()) {
                 Car newCar = carUpdate.get();
                 newCar.setBrand(car.getBrand());
                 newCar.setModel(car.getModel());

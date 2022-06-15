@@ -39,12 +39,16 @@ public class AdminController {
     public String adminPage() {
         adminService.doAdminStuff();
 
+
+
         return "admin";
     }
 
     @GetMapping("/admin/requests")
     public String adminRequests ( Model model) {
-        model.addAttribute("bookings", bookingService.getAllBooking());
+        model.addAttribute("bookings", bookingService.findByFalseStatus());
+        model.addAttribute("trueBookings", bookingService.findByTrueStatus());
+
         return "requests";
     }
 
@@ -92,7 +96,16 @@ public class AdminController {
         } else {
             model.addAttribute("car", new Car());
         }
+
+       // model.addAttribute("car", new Car());
+
         return "carEdit";
+    }
+
+    @RequestMapping(path = { "/admin/cars/new"})
+    public String addNewCar(Model model) {
+            model.addAttribute("car", new Car());
+        return "newCar";
     }
 
 
@@ -107,6 +120,6 @@ public class AdminController {
     public String createOrUpdateEmployee(Car car)
     {
         carService.createOrUpdateCar(car);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 }

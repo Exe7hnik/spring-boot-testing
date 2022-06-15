@@ -29,7 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
         // конфигурируем сам Spring Security
         // конфигурируем авторизацию
         http.authorizeRequests()
@@ -39,11 +38,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/static/images/**",
                         "/static/fonts/**"
                         ).permitAll()
-                /*.antMatchers(HttpMethod.PATCH,"/admin","/admin/**").hasRole("ADMIN")*/
                 .antMatchers("/", "/error", "/cars", "/cars/**").not().fullyAuthenticated()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/profile").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/auth/login", "/auth/registration", "/error", "/", "/cars", "/cars/**", "/contacts").permitAll()
+                .antMatchers("/auth/login", "/auth/registration", "/error", "/",
+                        "/cars", "/cars/**", "/contacts").permitAll()
                     .anyRequest().hasAnyRole("USER", "ADMIN")
                 .and()
                     .formLogin().loginPage("/auth/login")
@@ -54,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/");
+
                 //.logoutSuccessUrl("/auth/login");
         //http.csrf().disable();
     }

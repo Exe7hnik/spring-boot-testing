@@ -33,6 +33,24 @@ public class BookingService {
 
     }
 
+    public List<Booking> findByBookingPersonId(int id) {
+        return bookingRepository.findByBookingPersonId(id);
+    }
 
+    public List<Booking> findBookingByPersonId(int id) {
+        return bookingRepository.findBookingByPersonId(id);
+    }
+
+    public List<Booking> findByTrueStatus() {
+        return bookingRepository.findBookingByStatusIsTrue();
+    }
+
+    public List<Booking> findByFalseStatus() {
+        return bookingRepository.findBookingByStatusIsFalse();
+    }
+
+    public void createBooking(Booking booking) {
+        bookingRepository.save(booking);
+    }
 
 }
